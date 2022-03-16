@@ -1,4 +1,4 @@
-import {useShopQuery, Seo} from '@shopify/hydrogen';
+import {useShopQuery, Seo, log, flattenConnection} from '@shopify/hydrogen';
 import {
   ProductProviderFragment,
   ProductSeoFragment,
@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 import ProductDetails from '../../components/ProductDetails.client';
 import NotFound from '../../components/NotFound.server';
 import Layout from '../../components/Layout.server';
+import Recomendations from '../../components/Recomendations.server';
 
 export default function Product({country = {isoCode: 'US'}, params}) {
   const {handle} = params;
@@ -31,6 +32,7 @@ export default function Product({country = {isoCode: 'US'}, params}) {
     <Layout>
       <Seo type="product" data={product} />
       <ProductDetails product={product} />
+      <Recomendations id={product.id}/>
     </Layout>
   );
 }
