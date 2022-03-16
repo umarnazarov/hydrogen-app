@@ -1,4 +1,4 @@
-import {Image, Link} from '@shopify/hydrogen';
+import {Image, Link, log} from '@shopify/hydrogen';
 
 import MoneyCompareAtPrice from './MoneyCompareAtPrice.client';
 import MoneyPrice from './MoneyPrice.client';
@@ -16,7 +16,7 @@ export default function ProductCard({product}) {
   return (
     <div className="text-md mb-4 relative">
       <Link to={`/products/${product.handle}`}>
-        <div className="rounded-lg border-2 border-gray-200 mb-2 relative flex items-center justify-center overflow-hidden object-cover h-96">
+        <div className="rounded-xs border-2 border-gray-100 mb-2 relative flex items-center justify-center overflow-hidden object-cover h-[28rem]">
           {selectedVariant.image ? (
             <Image
               className="bg-white absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover object-center object-contain hover:scale-110"
@@ -30,15 +30,10 @@ export default function ProductCard({product}) {
           )}
         </div>
 
-        <span className="text-black font-semibold mb-0.5">{product.title}</span>
+        <span className="text-black block font-semibold text-sm text-center mb-0.5">{product.title}</span>
 
-        {product.vendor && (
-          <p className="text-gray-900 font-medium text-sm mb-0.5">
-            {product.vendor}
-          </p>
-        )}
 
-        <div className="flex ">
+        <div className="flex justify-center">
           {selectedVariant.compareAtPriceV2 && (
             <MoneyCompareAtPrice money={selectedVariant.compareAtPriceV2} />
           )}
