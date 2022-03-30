@@ -1,6 +1,6 @@
 import {useShopQuery, flattenConnection, Link} from '@shopify/hydrogen';
 import gql from 'graphql-tag';
-import {Suspense} from 'react';
+import {Suspense, useEditable } from 'react';
 
 function ExternalIcon() {
   return (

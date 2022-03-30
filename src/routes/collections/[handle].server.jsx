@@ -10,6 +10,7 @@ import LoadMoreProducts from '../../components/LoadMoreProducts.client';
 import Layout from '../../components/Layout.server';
 import ProductCard from '../../components/ProductCard';
 import NotFound from '../../components/NotFound.server';
+import FilterProducts from '../../components/FilterProducts.client';
 
 export default function Collection({
   country = {isoCode: 'US'},
@@ -34,7 +35,7 @@ export default function Collection({
   const collection = data.collection;
   const products = flattenConnection(collection.products);
   const hasNextPage = data.collection.products.pageInfo.hasNextPage;
-
+    
   return (
     <Layout>
       {/* the seo object will be expose in API version 2022-04 or later */}
@@ -46,6 +47,7 @@ export default function Collection({
       <p className="text-sm text-gray-500 mt-5 mb-5">
         {products.length} {products.length > 1 ? 'products' : 'product'}
       </p>
+      <FilterProducts products={ products }/>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
         {products.map((product) => (
           <li key={product.id}>
@@ -59,6 +61,10 @@ export default function Collection({
     </Layout>
   );
 }
+
+
+
+
 
 const QUERY = gql`
   query CollectionDetails(
