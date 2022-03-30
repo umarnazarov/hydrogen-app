@@ -13,7 +13,7 @@
     "build:client": "vite build --outDir dist/client --manifest",
     "build:server": "vite build --outDir dist/server --ssr @shopify/hydrogen/platforms/node",
     "build:worker": "cross-env WORKER=true vite build --outDir dist/worker --ssr @shopify/hydrogen/platforms/worker-event",
-    "serve": "node --enable-source-maps dist/server",
+    "start": "node --enable-source-maps dist/server",
     "preview": "npx @shopify/hydrogen-cli@latest preview"
   },
   "prettier": "@shopify/prettier-config",
