@@ -10,31 +10,30 @@ let scrollPosition = 0;
 /**
  * A client component that defines the navigation for a mobile storefront
  */
-export default function MobileNavigation({collections, isOpen, setIsOpen}) {
+export default function MobileNavigation({collections, isOpen, setIsOpen, scrolled, fromHome}) {
   const OpenFocusTrap = isOpen ? FocusTrap : Fragment;
-
   useEffect(() => {
     if (isOpen) {
-      scrollPosition = window.scrollY;
+      scrollPosition = window?.scrollY;
       document.body.style.position = 'fixed';
     } else if (document.body.style.position) {
       document.body.style.position = '';
-      window.scrollTo(0, scrollPosition);
+      window?.scrollTo(0, scrollPosition);
     }
   }, [isOpen]);
 
   return (
     <div className="lg:hidden">
-      <OpenFocusTrap>
         <button
           type="button"
-          className="flex justify-center items-center w-7 h-full"
+          className="flex justify-center items-center w-7 h-full relative z-50"
           onClick={() => setIsOpen((previousIsOpen) => !previousIsOpen)}
         >
-          {isOpen ? <CloseIcon /> : <OpenIcon />}
+        {isOpen ? <CloseIcon isOpen={isOpen} /> : <OpenIcon isOpen={isOpen} scrolled={scrolled} fromHome={fromHome}/>}
         </button>
-        {isOpen ? (
-          <div className="fixed -left-0 top-20 w-full h-screen z-10 bg-gray-50 px-4 md:px-12 py-7">
+          <div className={`fixed -left-0  top-0 w-full h-screen z-10 bg-gray-50 p-10 pt-12 md:px-12 py-7 transition-transform duration-300
+            ${isOpen ? 'translate-x-[0%]' : 'translate-x-[-100%]'}
+          `}>
             <ul>
               {collections.map((collection) => (
                 <li className="border-b border-gray-200" key={collection.id}>
@@ -49,15 +48,13 @@ export default function MobileNavigation({collections, isOpen, setIsOpen}) {
                 </li>
               ))}
             </ul>
-            <MobileCountrySelector />
+            {/* <MobileCountrySelector /> */}
           </div>
-        ) : null}
-      </OpenFocusTrap>
     </div>
   );
 }
 
-function CloseIcon() {
+function CloseIcon({ scrolled, fromHome}) {
   return (
     <svg
       width="18"
@@ -68,7 +65,7 @@ function CloseIcon() {
     >
       <path
         d="M1 17L17 1M1 1L17 17"
-        stroke="black"
+        stroke='black'
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
