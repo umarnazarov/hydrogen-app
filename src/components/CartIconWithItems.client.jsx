@@ -5,13 +5,16 @@ import CartIcon from './CartIcon';
 /**
  * A client component that specifies the icon to use if a cart contains merchandise
  */
-export default function CartIconWithItems() {
+export default function CartIconWithItems({fromHome, scrolled}) {
   const {totalQuantity} = useCart();
 
   return (
     <>
       <div className="relative">
-        <CartIcon />
+        <CartIcon
+          fromHome={fromHome}
+          scrolled={scrolled}
+        />
 
         <div
           className={`bg-blue-700 text-xs rounded-full leading-none text-white absolute bottom-3 right-1 flex items-center justify-center transform translate-y-1/2 transition-all ${
