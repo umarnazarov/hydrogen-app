@@ -35,7 +35,6 @@ export default function Header({ collections, storeName, fromHome }) {
         }
     }, [])
 
-
   useEffect(() => {
     const scrollbarWidth = document.documentElement.clientWidth;
 
