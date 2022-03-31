@@ -20,7 +20,9 @@ import Layout from '../components/Layout.server';
 import FeaturedCollection from '../components/FeaturedCollection';
 import ProductCard from '../components/ProductCard';
 import {Suspense} from 'react';
-import Testimonials from '../components/Testimonials.server';
+import ProductsSlider from '../components/ProductsSlider.server';
+import ImageIntro from '../components/ImageIntro';
+import Testimonials from '../components/Testimonials.client';
 
 export default function Index({country = {isoCode: 'US'}}) {
   return (
@@ -31,10 +33,11 @@ export default function Index({country = {isoCode: 'US'}}) {
       <IntroVideo/>
       <div className="relative mb-12">
         <Suspense fallback={<BoxFallback />}>
-          <Testimonials handle={'vans'} />
+          <ProductsSlider handle={'vans'} />
         </Suspense>
         <Suspense fallback={<BoxFallback />}>
-          
+          <ImageIntro />
+          <Testimonials/>
         </Suspense>
       </div>
     </Layout>
