@@ -13,7 +13,7 @@ export default function Navigation({collections}) {
             <Suspense fallback="Load">
             <Link
               to={`/collections/${collection.handle}`}
-              className="block p-4 hover:opacity-80"
+              className="block p-4 text-sm font-medium hover:opacity-80"
             >
               {collection.title}
             </Link>
