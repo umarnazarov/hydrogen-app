@@ -2,7 +2,6 @@ import React, { useState, useMemo, useCallback }  from 'react'
 
 function FilterProducts({ products }) {
   const [selected, setSelected] = useState([]);
-  console.log("rendered")
   let variants = useMemo(() => products.map(p => p.variants.edges.map(e => e.node.selectedOptions)), [products])
 
   function flatten(arr) {
