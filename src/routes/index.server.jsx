@@ -5,30 +5,36 @@ import {
   Seo,
   CacheDays,
 } from '@shopify/hydrogen';
+
 import {
   ProductProviderFragment,
   ImageFragment,
   HomeSeoFragment,
 } from '@shopify/hydrogen/fragments';
+
 import gql from 'graphql-tag';
+
+import IntroVideo from '../components/IntroVideo.client'
 
 import Layout from '../components/Layout.server';
 import FeaturedCollection from '../components/FeaturedCollection';
 import ProductCard from '../components/ProductCard';
 import {Suspense} from 'react';
+import Testimonials from '../components/Testimonials.server';
 
 export default function Index({country = {isoCode: 'US'}}) {
   return (
-    <Layout >
+    <Layout fromHome={true}>
       <Suspense fallback={null}>
         <SeoForHomepage />
       </Suspense>
+      <IntroVideo/>
       <div className="relative mb-12">
         <Suspense fallback={<BoxFallback />}>
-          <FeaturedProductsBox country={country} />
+          <Testimonials handle={'vans'} />
         </Suspense>
         <Suspense fallback={<BoxFallback />}>
-          <FeaturedCollectionBox country={country} />
+          
         </Suspense>
       </div>
     </Layout>
