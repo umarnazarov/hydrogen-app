@@ -86,6 +86,8 @@ function CartItems() {
   );
 }
 
+console.log('HELO')
+
 function LineInCart() {
   const {merchandise} = useCartLine();
   return (
