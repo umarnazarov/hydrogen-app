@@ -35,9 +35,11 @@ export default function Cart() {
         onClick={isCartOpen ? closeCart : null}
       />
       <Dialog open={isCartOpen} onClose={closeCart}>
-        <Dialog.Overlay className="fixed z-20 inset-0 bg-gray-50 opacity-75" />
+        <Dialog.Overlay className={`fixed z-20 inset-0 bg-gray-60 opacity-60 ${
+          isCartOpen ? 'opacity-20' : 'opacity-0 pointer-events-none'
+        }`} />
         <div
-          className={`absolute flex flex-col md:block z-20 top-0 left-0 right-0 bottom-0 md:top-7 h-full md:left-auto md:right-7 md:bottom-auto md:h-auto md:max-h-[calc(100vh-56px)] bg-gray-50 w-full md:w-[470px] rounded-b-lg shadow-2xl ${
+          className={`h-[100vh] absolute flex flex-col md:block z-20 top-0 right-0 bottom-0 bg-gray-50 w-full md:w-[470px] rounded-b-lg shadow-2xl ${
             totalQuantity === 0 ? 'overflow-hidden' : 'overflow-y-scroll'
           }`}
         >
@@ -60,14 +62,11 @@ function CartHeader() {
   const {closeCart} = useCartUI();
   return (
     <header className="border-b border-gray-300 bg-white py-3 px-6 flex justify-between items-center sticky top-0">
+      <h1>SHOPPING BAG</h1>
       <button type="button" onClick={closeCart}>
         <ArrowIcon />
         <span className="sr-only">Close cart</span>
       </button>
-      <span className="text-xs text-gray-500">
-        Free shipping on orders over $50
-      </span>
-      <CartIconWithItems />
     </header>
   );
 }
@@ -195,8 +194,8 @@ function CartItemQuantity() {
 
 function CartFooter() {
   return (
-    <footer className="bottom-0 sticky pb-8 border-t border-black border-opacity-5">
-      <div className="relative h-60 bg-white text-gray-900 p-7">
+    <footer className="bottom-0 sticky pb-3 border-t border-black border-opacity-5">
+      <div className="relative  bg-white text-gray-900 p-7">
         <div role="table" aria-label="Cost summary">
           <div role="row" className="flex justify-between">
             <span className="font-semibold" role="rowheader">
@@ -217,8 +216,7 @@ function CartFooter() {
             </span>
           </div>
         </div>
-        <CartShopPayButton className="flex my-4 justify-center w-full bg-[#5a31f4] py-2 rounded-md" />
-        <CartCheckoutButton className={BUTTON_PRIMARY_CLASSES}>
+        <CartCheckoutButton className="flex my-5 justify-center w-full bg-[#000] text-white py-3 ">
           Checkout
         </CartCheckoutButton>
       </div>
@@ -229,17 +227,10 @@ function CartFooter() {
 function CartEmpty() {
   const {closeCart} = useCartUI();
   return (
-    <div className="p-7 flex flex-col">
+    <div className="p-7 h-[100vh] flex flex-col justify-center items-center">
       <p className="mb-4 text-lg text-gray-500 text-center">
-        Your cart is empty
+        YOUR SHOPPING BAG IS EMPTY
       </p>
-      <button
-        type="button"
-        onClick={closeCart}
-        className={BUTTON_PRIMARY_CLASSES}
-      >
-        Continue Shopping
-      </button>
     </div>
   );
 }
