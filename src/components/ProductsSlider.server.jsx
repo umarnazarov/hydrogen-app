@@ -2,9 +2,9 @@ import React from 'react'
 import gql from 'graphql-tag';
 import { log, useShopQuery } from '@shopify/hydrogen';
 
-// import Testimonial from './Testimonial.client';
+import ProductSlider from './ProductsSlider.client';
 
-function Testimonials({ handle = 'vans' }) {
+function ProductsSlider({ handle = 'vans' }) {
     const {data} = useShopQuery({
         query: QUERY,
         variables: {
@@ -17,12 +17,11 @@ function Testimonials({ handle = 'vans' }) {
 
 
     return (
-      <>hi</>
-    //   <Testimonial images={images}/>
+      <ProductSlider images={images}/>
   )
 }
 
-export default Testimonials
+export default ProductsSlider
 
 const QUERY = gql`
   query productsByHandle($handle: String!) {
