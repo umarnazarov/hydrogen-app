@@ -1,5 +1,5 @@
 import React from 'react'
-import Men from '../../images/Men.webp'
+import Men from '../../assets/Men.webp'
 
 function ImageIntro() {
   return (
